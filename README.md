@@ -1,6 +1,6 @@
-# y
+# realTimeMonitoring
 
-> y
+> realTimeMonitoring
 
 ## Build Setup
 
@@ -17,5 +17,19 @@ npm run build
 # build for production and view the bundle analyzer report
 npm run build --report
 ```
+## Build Setup
 
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+## 技术栈
+此demo在实现上使用了以下技术
+vue
+vue-cli
+css
+js
+es6
+百度地图api
+
+## 一些亮点
+数据点局部更新 减少性能消耗
+
+界面效果
+![image](https://github.com/github307896154/realTimeMonitoring/blob/master/%E6%95%88%E6%9E%9C%E5%9B%BE.png)
