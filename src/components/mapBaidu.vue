@@ -7,7 +7,7 @@
       <div>{{`上次更新删除了${delLength}条数据`}}</div>
       <div>{{`上次更新添加了${addLength}条数据`}}</div>
       <div>{{`上次更新改变了${changeLength}条数据`}}</div>
-      <div>{{`当前有${mapDateNew.length}条数据`}}</div>
+      <div @click="close">{{`当前有${(mapDateOld.length+addLength-delLength)}条数据`}}</div>
     </div>
   </div>
 
@@ -54,6 +54,12 @@ export default {
     };
   },
   methods: {
+    close(){
+      console.log("关闭");
+      
+      this.pointAggregationType=!this.pointAggregationType;
+      this.markerClusterer.clearMarkers();
+    },
     // map初始化
     mapInit() {
       // 百度地图API功能
@@ -94,11 +100,13 @@ export default {
       //   border: "1px solid #000",
       //   fontFamily: "微软雅黑"
       // });
-      this.map.addOverlay(marker); //添加到地图
+      
       // marker.disableMassClear();
       // marker.setLabel(label);
       if (this.pointAggregationType) {
         this.markerClusterer.addMarker(marker);
+      }else{
+        this.map.addOverlay(marker); //添加到地图
       }
     },
     //删除点
@@ -125,12 +133,15 @@ export default {
           //修改点
           changePonitList.forEach(edit => {
             if (item.id == edit.id) {
-              let point = new BMap.Point(edit.lat, edit.lng);
-              let icon = new BMap.Icon(edit.icon, new BMap.Size(29, 29));
-              item.setIcon(icon); //重新设置图标
+              
+              
+              let point =  new BMap.Point(edit.lng, edit.lat);;
+              // console.log(point);
+              // let icon = new BMap.Icon(edit.icon, new BMap.Size(29, 29));
+              // item.setIcon(icon); //重新设置图标
               item.setPosition(point); //重新设置经纬度
               if (this.pointAggregationType) {
-                this.markerClusterer.setMarkers(item.id, item);
+                this.markerClusterer.setMarker(item.id, item);
               }
             }
           });
