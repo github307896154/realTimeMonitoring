@@ -39,17 +39,19 @@ export default {
       if (this.timer == null) {
         this.timer = setInterval(() => {
           this.mapDataTableOld = this.deepCopy(this.mapDataTable);
-          let addNum = Math.random() * 10, //随机添加点的数量
-            delNum = Math.random() * 10, //随机删除点的数量
-            editNum = Math.random() * 10, //随机修改点的数量
+          let addNum =parseInt(Math.random() * 10), //随机添加点的数量
+            delNum = parseInt(Math.random() * 10), //随机删除点的数量
+            editNum = parseInt(Math.random() * 10), //随机修改点的数量
             addList = [], //添加的数组
             delList = [], //删除的数组
             editList = [], //修改的数组
             maxid = this.mapDataTableOld[this.mapDataTableOld.length - 1].id,
             minid = this.mapDataTableOld[0].id;
+          // console.log("删除："+delNum);
+          // console.log("添加："+addNum);
           for (let index = 0; index < addNum; index++) {
             this.mapDataTable.push({
-              id: maxid + index,
+              id: maxid + index+1,
               lng: 120 + Math.random(),
               name: `点${index}`,
               lat: 30 + Math.random(),
@@ -79,7 +81,7 @@ export default {
     //随机生成数据
     getRandom() {
       let randomData = [];
-      for (let index = 0; index < 1500; index++) {
+      for (let index = 0; index < 500; index++) {
         randomData.push({
           id: index,
           lng: 120 + Math.random(),
